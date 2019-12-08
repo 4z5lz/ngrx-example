@@ -1,0 +1,32 @@
+.example {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.example > * {
+  padding: 10px;
+  margin: 10px;
+}
+
+header {
+  flex-flow: row wrap;
+  flex: 1 1 100%;
+  font-weight: bold;
+  text-align: center;
+  background: #eee;
+}
+
+app-counter-controls {
+  border: 1px solid green;
+  order: 1;
+  flex-grow: 1;
+  text-align: center;
+}
+
+app-counter-output {
+  border: 1px solid blue;
+  order: 2;
+  flex-grow: 1;
+  text-align: center;
+}

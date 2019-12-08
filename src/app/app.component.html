@@ -1,9 +1,7 @@
-<h1>Simple store</h1>
+<div class="example">
+  <header>Simple store</header>
 
-<div>
-  Count: <strong>{{ count$ | async }}</strong>
+  <app-counter-controls></app-counter-controls>
+
+  <app-counter-output></app-counter-output>
 </div>
-
-<button (click)="increment()">+</button>
-<button (click)="decrement()">-</button>
-<button (click)="reset()">reset</button>
