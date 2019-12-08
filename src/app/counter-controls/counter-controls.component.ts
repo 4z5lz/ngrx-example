@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
 import { CounterActions } from '../store/actions/counter';
 import { CounterState } from '../store/state/counter';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-counter-controls',
@@ -9,13 +10,10 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./counter-controls.component.css']
 })
 export class CounterControlsComponent implements OnInit {
+  constructor(private store: Store<CounterState>) {}
 
-  constructor(private store: Store<CounterState>) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  
   public increment(): void {
     this.store.dispatch({ type: CounterActions.INCREMENT });
   }
@@ -27,5 +25,4 @@ export class CounterControlsComponent implements OnInit {
   public reset(): void {
     this.store.dispatch({ type: CounterActions.RESET });
   }
-
 }
