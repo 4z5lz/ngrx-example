@@ -15,7 +15,7 @@ export class AlbumsLoadingAction implements Action {
 
 export class AlbumsLoadedAction implements Action {
   public readonly type = EAlbumsActions.LOADED;
-  constructor(public payload: Array<AlbumModel>) {}
+  // constructor(public payload: Array<AlbumModel>) {}
 }
 
 export class AlbumSelectedAction implements Action {

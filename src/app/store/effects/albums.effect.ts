@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType, Effect } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
+
 import { PhotogalleryService } from '../../services/photogallery.service';
- 
+import { EAlbumsActions, AlbumSelectedAction, AlbumsLoadedAction, AlbumsLoadingAction } from '../actions/albums';
+
 @Injectable()
 export class AlbumsEffects {
- 
-  loadAlbums$ = createEffect(() => this.actions$.pipe(
-    ofType('[Movies Page] Load Movies'),
-    mergeMap(() => this.moviesService.getAll()
-      .pipe(
-        map(movies => ({ type: '[Movies API] Movies Loaded Success', payload: movies })),
+  @Effect()
+  loadAlbums$ = this.actions$.pipe(
+    ofType(EAlbumsActions.LOADING),
+    mergeMap(() =>
+      this.gallerySrv.getAlbums().pipe(
+        map(albums => ({ type: EAlbumsActions.LOADED, payload: albums })),
         catchError(() => EMPTY)
-      ))
+      )
     )
   );
- 
-  constructor(
-    private actions$: Actions,
-    private moviesService: MoviesService
-  ) {}
+
+  constructor(private actions$: Actions, private gallerySrv: PhotogalleryService) {}
 }

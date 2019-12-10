@@ -12,15 +12,16 @@ import { AlbumsLoadingAction, AlbumsLoadedAction } from '../store/actions/albums
 export class AlbumsComponent implements OnInit {
 
   public isLoading$ = this.store.pipe(select((state: PhotogalleryState) => state.albumLoading));
+  public albumsLoaded$ = this.store.pipe(select((state: PhotogalleryState) => state.albums));
 
   constructor(private store: Store<PhotogalleryState>) {}
 
   ngOnInit() {
-    this.loading();
+    this.load();
   }
 
-  public loading(): void {
+  public load(): void {
     this.store.dispatch(new AlbumsLoadingAction(true));
-    this.store.dispatch(new AlbumsLoadingAction(true));
+    this.store.dispatch(new AlbumsLoadedAction());
   }
 }
